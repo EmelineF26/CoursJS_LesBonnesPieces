@@ -48,11 +48,32 @@ boutonTrier.addEventListener("click", function () {
     console.log(piecesOrdonees);
 });
 
+
 const boutonFiltrer = document.querySelector(".btn-filtrer");
 
 boutonFiltrer.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function(piece) {
         return piece.prix <= 35;
+    });
+    console.log(piecesFiltrees);
+});
+
+// Exercice 2
+const boutonDecroissant = document.querySelector(".btn-decroissant");
+
+boutonDecroissant.addEventListener("click", function () {
+    const piecesOrdonees = Array.from(pieces);
+    piecesOrdonees.sort(function (a, b) {
+        return b.prix - a.prix;
+    });
+    console.log(piecesOrdonees);
+});
+
+const boutonFiltrerDescription = document.querySelector(".btn-filtrer-description");
+
+boutonFiltrerDescription.addEventListener("click", function () {
+    const piecesFiltrees = pieces.filter(function(piece) {
+        return piece.description
     });
     console.log(piecesFiltrees);
 });
