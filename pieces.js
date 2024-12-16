@@ -35,5 +35,24 @@ for (let i = 0; i < pieces.length; i++) {
     // On ajoute des éléments au DOM pour l'exercice
     pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(stockElement);
-
 }
+
+// Gestion des boutons de triage
+const boutonTrier = document.querySelector(".btn-trier");
+
+boutonTrier.addEventListener("click", function () {
+    const piecesOrdonees = Array.from(pieces);
+    piecesOrdonees.sort(function (a, b) {
+        return a.prix - b.prix;
+    });
+    console.log(piecesOrdonees);
+});
+
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+
+boutonFiltrer.addEventListener("click", function () {
+    const piecesFiltrees = pieces.filter(function(piece) {
+        return piece.prix <= 35;
+    });
+    console.log(piecesFiltrees);
+});
