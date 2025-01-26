@@ -1,3 +1,5 @@
+import { ajoutListenersAvis } from "./avis.js";
+
 // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch('pieces-autos.json');
 const pieces = await reponse.json();
@@ -23,6 +25,10 @@ function genererPieces(pieces){
         descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
         const stockElement = document.createElement("p");
         stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
+
+        const avisBouton = document.createElement("button");
+        avisBouton.dataset.id = article.id;
+        avisBouton.textContent = "Afficher les avis";
         
         // On rattache la balise article a la section Fiches
         sectionFiches.appendChild(pieceElement);
@@ -34,13 +40,15 @@ function genererPieces(pieces){
         //Ajout des éléments au DOM pour l'exercice
         pieceElement.appendChild(descriptionElement);
         pieceElement.appendChild(stockElement);
-    
+
+        pieceElement.appendChild(avisBouton);
     }
+    ajoutListenersAvis();
 }
 
 genererPieces(pieces);
 
- //gestion des bouttons 
+ //Gestion des boutons 
 const boutonTrier = document.querySelector(".btn-trier");
 
 boutonTrier.addEventListener("click", function () {
@@ -91,8 +99,8 @@ for(let i = pieces.length -1 ; i >= 0; i--){
     }
 }
 console.log(noms)
-//Création de l'en-tête
 
+//Création de l'en-tête
 const pElement = document.createElement('p')
 pElement.innerText = "Pièces abordables";
 //Création de la liste
