@@ -1,8 +1,9 @@
-import { ajoutListenersAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch('pieces-autos.json');
+const reponse = await fetch('http://localhost:8081/pieces');
 const pieces = await reponse.json();
+ajoutListenerEnvoyerAvis();
 
 function genererPieces(pieces){
     for (let i = 0; i < pieces.length; i++) {
@@ -15,6 +16,7 @@ function genererPieces(pieces){
         // Création des balises 
         const imageElement = document.createElement("img");
         imageElement.src = article.image;
+        console.log(article.image);
         const nomElement = document.createElement("h2");
         nomElement.innerText = article.nom;
         const prixElement = document.createElement("p");
