@@ -75,5 +75,3 @@ export async function afficherGraphiqueAvis(){
         config,
     );
 }};
-    graphiqueAvis();
-    afficherGraphiqueAvis();
